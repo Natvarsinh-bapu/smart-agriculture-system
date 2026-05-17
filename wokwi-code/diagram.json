@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "author": "NATVARSINH PARMAR",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-breadboard-half",
+      "id": "bb1",
+      "top": -109.5,
+      "left": -351.9,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": -163.38,
+      "left": 23.77,
+      "attrs": {}
+    },
+    { "type": "chip-moisturesensor", "id": "chip1", "top": 97.02, "left": -494.4, "attrs": {} },
+    { "type": "chip-npksensor", "id": "chip2", "top": 202.62, "left": -235.2, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -24,
+      "left": -488.1,
+      "rotate": 270,
+      "attrs": { "temperature": "17.4", "humidity": "49" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -121.6,
+      "left": -546.4,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -101.65,
+      "left": -355.2,
+      "attrs": { "value": "10000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:3V3.1", "bb1:bp.1", "red", [ "v0", "h-96.05", "v-48", "h-201.6" ] ],
+    [ "esp:GND.1", "bb1:bn.1", "black", [ "h-19.25", "v-268.8", "h-288", "v67.2" ] ],
+    [ "dht1:GND", "bb1:bn.15", "black", [ "h0" ] ],
+    [ "dht1:VCC", "bb1:bp.17", "red", [ "h0" ] ],
+    [ "esp:15", "dht1:SDA", "green", [ "h-374.45", "v96" ] ],
+    [ "ldr1:VCC", "bb1:bp.4", "red", [ "h0" ] ],
+    [ "r1:1", "ldr1:GND", "black", [ "v0" ] ],
+    [ "bb1:bn.5", "r1:2", "black", [ "h0" ] ],
+    [ "esp:4", "ldr1:AO", "green", [ "h-67.25", "v28.8" ] ],
+    [ "chip1:GND", "bb1:bp.25", "black", [ "h-19.2", "v19.2" ] ],
+    [ "chip1:VCC", "bb1:bp.20", "red", [ "h-19.2", "v-19.2" ] ],
+    [ "esp:5", "chip1:A0", "green", [ "h-38.45", "v211.2", "h-19.2" ] ],
+    [ "chip2:VCC", "bb1:bp.18", "red", [ "h-28.8", "v-153.6" ] ],
+    [ "chip2:GND", "bb1:bn.18", "black", [ "h-76.8", "v-9.6" ] ],
+    [ "esp:16", "chip2:TX", "green", [ "h-297.65", "v307.2" ] ],
+    [ "esp:17", "chip2:RX", "green", [ "h-278.45", "v278.4" ] ]
+  ],
+  "dependencies": {}
+}
